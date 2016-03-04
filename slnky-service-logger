@@ -10,7 +10,9 @@ require 'daemons'
 require 'slnky/service/logger'
 Dotenv.load
 
-# Become a daemon
-Daemons.daemonize if ARGV[1] == 'run'
+env = ARGV[1]
 
-Slnky::Service::Logger.new(ENV['SLNKY_URL']).start
+# Become a daemon
+Daemons.daemonize if env == 'production'
+
+Slnky::Service::Logger.new(ENV['SLNKY_URL'], env).start
