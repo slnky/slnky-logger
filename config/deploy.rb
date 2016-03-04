@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'slnky-logger'
-set :repo_url, 'git@github.com:something/slnky-logger.git'
+set :repo_url, 'git@github.com:shawncatz/slnky-logger.git'
 
 rubyversion = File.read('.ruby-version').chomp
 rubygemset = File.read('.ruby-gemset').chomp
