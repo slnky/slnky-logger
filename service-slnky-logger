@@ -15,4 +15,4 @@ env = ARGV[1]
 # Become a daemon
 Daemons.daemonize if env == 'production'
 
-Slnky::Service::Logger.new(ENV['SLNKY_URL'], env).start
+Slnky::Service::Logger.new(ENV['SLNKY_URL'], env: env).start
