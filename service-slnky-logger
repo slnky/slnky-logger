@@ -13,6 +13,6 @@ Dotenv.load
 env = ARGV[0]
 
 # Become a daemon
-Daemons.daemonize if env == 'production'
+# Daemons.daemonize if env == 'production'
 
 Slnky::Service::Logger.new(ENV['SLNKY_URL'], env: env).start
