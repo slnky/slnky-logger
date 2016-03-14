@@ -7,8 +7,7 @@ module Slnky
       def initialize(url, options={})
         super(url, options)
         # not working in production and not sure why
-        # @logfile = development? ? STDOUT : "log/slnky.log"
-        @logfile = "log/slnky.log"
+        @logfile = development? ? STDOUT : "log/slnky.log"
         @logger = ::Logger.new(@logfile)
         @logger.level = ::Logger::INFO
       end
@@ -19,7 +18,6 @@ module Slnky
         @channel.queue("service.logger.logs", durable: true).bind(@exchanges['logs']).subscribe do |raw|
           payload = parse(raw)
           level = payload.level.to_sym
-          puts "## %s [%6s] %s" % [Time.now, payload.level.upcase, payload.to_s]
           @logger.send(level, payload.to_s)
         end
       end
