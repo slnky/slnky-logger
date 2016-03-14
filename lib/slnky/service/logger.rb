@@ -6,7 +6,9 @@ module Slnky
     class Logger < Base
       def initialize(url, options={})
         super(url, options)
-        @logfile = development? ? STDOUT : "log/slnky.log"
+        # not working in production and not sure why
+        # @logfile = development? ? STDOUT : "log/slnky.log"
+        @logfile = "log/slnky.log"
         @logger = ::Logger.new(@logfile)
         @logger.level = ::Logger::INFO
       end
