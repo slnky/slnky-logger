@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'slnky', '~> 0.5.0'
+gem 'slnky', '~> 0.5.2'
 gem 'daemons', '~> 1.2.3'
 gem 'dotenv', '~> 2.1.0'
 
