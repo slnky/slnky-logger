@@ -10,7 +10,7 @@ require 'daemons'
 require 'slnky/service/logger'
 Dotenv.load
 
-env = ARGV[1]
+env = ARGV[0]
 
 # Become a daemon
 Daemons.daemonize if env == 'production'

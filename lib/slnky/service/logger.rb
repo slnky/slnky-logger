@@ -19,7 +19,7 @@ module Slnky
         @channel.queue("service.logger.logs", durable: true).bind(@exchanges['logs']).subscribe do |raw|
           payload = parse(raw)
           level = payload.level.to_sym
-          # puts "## %s [%6s] %s" % [Time.now, payload.level.upcase, payload.to_s]
+          puts "## %s [%6s] %s" % [Time.now, payload.level.upcase, payload.to_s]
           @logger.send(level, payload.to_s)
         end
       end
