@@ -25,6 +25,11 @@ module Slnky
       def handle_terminated(name, data)
         @logger.send :info, data.inspect
       end
+
+      def handler(name, data)
+        # for example test
+        name == 'slnky.service.test' && data.hello == 'world!'
+      end
     end
   end
 end
