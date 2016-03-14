@@ -10,6 +10,9 @@ module Slnky
         @logfile = development? ? STDOUT : "log/slnky.log"
         @logger = ::Logger.new(@logfile)
         @logger.level = ::Logger::INFO
+        @logger.formatter = proc do |severity, datetime, progname, msg|
+          "%-5s %s: %s\n" % [severity, datetime, msg]
+        end
       end
 
       subscribe 'aws.ec2.terminated', :handle_terminated
@@ -17,9 +20,13 @@ module Slnky
       def run
         @channel.queue("service.logger.logs", durable: true).bind(@exchanges['logs']).subscribe do |raw|
           payload = parse(raw)
-          level = payload.level.to_sym
-          @logger.send(level, payload.to_s)
+          logline(payload)
         end
+      end
+
+      def logline(data)
+        level = data.level.to_sym
+        @logger.send(level, "%s/%s: %s" % [data.ipaddress, data.service, data.message])
       end
 
       def handle_terminated(name, data)
