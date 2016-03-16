@@ -24,9 +24,9 @@ module Slnky
         end
       end
 
-      def logline(data)
-        level = data.level.to_sym
-        @logger.send(level, "%s/%s: %s" % [data.ipaddress, data.service, data.message])
+      def logline(log)
+        level = log.level.to_sym
+        @logger.send(level, "%s/%s: %s" % [log.ipaddress, log.service, log.message])
       end
 
       def handle_terminated(name, data)
