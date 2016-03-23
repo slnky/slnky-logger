@@ -11,7 +11,7 @@ set :deploy_to, "#{ENV['DEPLOY_DIR']}/#{fetch(:application)}#{fetch(:stage) == '
 
 set :keep_releases, 5
 
-set :rvm_ruby_version, "#{rubyversion}@#{rubygemset}"      # Defaults to: 'default'
+set :rvm_ruby_version, "#{rubyversion}@#{rubygemset}" # Defaults to: 'default'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -42,6 +42,13 @@ set :rvm_ruby_version, "#{rubyversion}@#{rubygemset}"      # Defaults to: 'defau
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+set :templates_path, 'config/templates'
+after :setup, :logrotate do
+  on roles :app do
+    sudo_upload! template('logrotate.conf.erb'), "/etc/logrotate.d/slnky-logger.conf"
+  end
+end
 
 namespace :deploy do
 
