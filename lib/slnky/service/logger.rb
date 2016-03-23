@@ -15,7 +15,7 @@ module Slnky
         end
       end
 
-      subscribe 'aws.ec2.terminated', :handle_terminated
+      subscribe '*', :handle_event
 
       def run
         @channel.queue("service.logger.logs", durable: true).bind(@exchanges['logs']).subscribe do |raw|
@@ -29,8 +29,8 @@ module Slnky
         @logger.send(level, "%s/%s: %s" % [log.ipaddress, log.service, log.message])
       end
 
-      def handle_terminated(name, data)
-        @logger.send :info, data.inspect
+      def handle_event(name, data)
+        @logger.send :info, data.to_h.inspect
       end
 
       def handler(name, data)
