@@ -30,7 +30,11 @@ module Slnky
       end
 
       def handle_event(name, data)
-        @logger.send :info, data.to_h.inspect
+        out = data.to_h.inspect
+        if out.length > 50
+          out = out[0...200] + '...'
+        end
+        @logger.send :info, "#{name}: #{out}"
       end
 
       def handler(name, data)
