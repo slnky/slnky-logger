@@ -7,5 +7,7 @@
 /spec/reports/
 /tmp/
 /log/*
-.env
-deploy.env
+/.env
+/slnky-cli/lib/slnky/template/service/deploy.env.erb
+/test/config.yaml
+/deploy.env

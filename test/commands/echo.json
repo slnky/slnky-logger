@@ -1,0 +1,11 @@
+{
+  "name": "slnky.logger.command",
+  "payload": {
+    "command": "echo",
+    "args": [
+      "test",
+      "echo"
+    ],
+    "responder": "STDOUT"
+  }
+}

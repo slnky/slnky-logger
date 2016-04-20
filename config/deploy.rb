@@ -2,16 +2,13 @@
 lock '3.4.0'
 
 set :application, 'slnky-logger'
-set :repo_url, 'git@github.com:slnky/slnky-logger.git'
-
-rubyversion = File.read('.ruby-version').chomp
-rubygemset = File.read('.ruby-gemset').chomp
+set :repo_url, 'git@github.com:something/slnky-logger.git'
 
 set :deploy_to, "#{ENV['DEPLOY_DIR']}/#{fetch(:application)}#{fetch(:stage) == 'staging' ? '-stg' : ''}"
 
 set :keep_releases, 5
 
-set :rvm_ruby_version, "#{rubyversion}@#{rubygemset}" # Defaults to: 'default'
+set :rvm_ruby_version, File.read('.ruby-version').chomp # Defaults to: 'default'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -43,13 +40,6 @@ set :rvm_ruby_version, "#{rubyversion}@#{rubygemset}" # Defaults to: 'default'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :templates_path, 'config/templates'
-after :setup, :logrotate do
-  on roles :app do
-    sudo_upload! template('logrotate.conf.erb'), "/etc/logrotate.d/slnky-logger.conf"
-  end
-end
-
 namespace :deploy do
 
   after :restart, :clear_cache do
@@ -61,4 +51,11 @@ namespace :deploy do
     end
   end
 
+end
+
+set :templates_path, 'config/templates'
+after :setup, :logrotate do
+  on roles :app do
+    sudo_upload! template('logrotate.conf.erb'), "/etc/logrotate.d/slnky-logger.conf"
+  end
 end
