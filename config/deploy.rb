@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'slnky-logger'
-set :repo_url, 'git@github.com:something/slnky-logger.git'
+set :repo_url, 'git@github.com:slnky/slnky-logger.git'
 
 set :deploy_to, "#{ENV['DEPLOY_DIR']}/#{fetch(:application)}#{fetch(:stage) == 'staging' ? '-stg' : ''}"
 
