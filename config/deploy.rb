@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.1'
+lock '3.4.0'
 
 set :application, 'slnky-logger'
 set :repo_url, 'git@github.com:slnky/slnky-logger.git'
