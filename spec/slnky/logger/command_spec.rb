@@ -20,6 +20,6 @@ describe Slnky::Logger::Command do
 
   it 'handles help' do
     expect { subject.handle(help.name, help.payload, help_response) }.to_not raise_error
-    expect(help_response.trace).to include("logger help: print help")
+    expect(help_response.trace).to include("logger has no additional commands")
   end
 end
