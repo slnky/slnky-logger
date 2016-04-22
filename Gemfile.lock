@@ -93,7 +93,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
-    slnky (0.12.2)
+    slnky (0.12.4)
       activesupport (~> 4.2.5.1)
       amqp (~> 1.5.1)
       clamp (~> 1.0.0)
@@ -140,7 +140,7 @@ DEPENDENCIES
   dotenv (~> 2.1.0)
   rake
   rspec
-  slnky (~> 0.12.0)
+  slnky (~> 0.12.4)
   travis (~> 1.8.2)
 
 BUNDLED WITH
